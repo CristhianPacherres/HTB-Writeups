@@ -16,7 +16,7 @@ La herramiento encontro los siguientes directorios:
 
 Probando esos directorios, encontre que el directorio /music tiene un boton de login que me redirecciona a OpenNetAdmin ver 18.1.1. Buscando en google, encontre que esa versión posee RCE(Remote Code Execution).
 
-##Buscando acceso
+## Buscando acceso
 
 Procedo a buscar exploits con el siguiente comando:
 ```markdown
@@ -34,7 +34,7 @@ Ejecutandolo con:
 Me da una shell:
 ![imagen](https://user-images.githubusercontent.com/84255799/119301280-d0565f80-bc27-11eb-9d99-24f7c772941f.png)
 
-##Buscando credenciales
+## Buscando credenciales
 
 Procedo a buscar archivos que puedan darme pistas de cómo obtener acceso a un user.
 ![imagen](https://user-images.githubusercontent.com/84255799/119301374-fe3ba400-bc27-11eb-9979-f1e5ee69c922.png)
@@ -43,7 +43,8 @@ Leyendo ese archivo con:
 ```markdown
 cat var/www/ona/local/config/database_settings.inc.php
 ```
-Encontramos lo siguiente
+Encontramos lo siguiente:
+
 ![imagen](https://user-images.githubusercontent.com/84255799/119301592-570b3c80-bc28-11eb-8d91-890f011f8fd4.png)
 
 Por lo que intento probar esa contraseña en los usuarios de la maquina
@@ -54,9 +55,10 @@ jimmy:x:1000:1000:jimmy:/home/jimmy:/bin/bash
 joanna:x:1001:1001:,,,:/home/joanna:/bin/bash
 ```
 La contraseña funcionó para Jimmy!
+
 ![imagen](https://user-images.githubusercontent.com/84255799/119301787-a2bde600-bc28-11eb-990f-b50693b4f08f.png)
 
-##Escalando privilegios 
+## Escalando privilegios 
 
 Buscando en los directorios de la maquina, encontre uno interesante
 ```markdown
@@ -77,7 +79,7 @@ curl localhost:52846/main.php
 Encontramos una llave privada
 ![imagen](https://user-images.githubusercontent.com/84255799/119302205-5a52f800-bc29-11eb-9014-2adb7003b667.png)
 
-###Crackeando password 
+### Crackeando password 
 
 Para crackear una pass, mi primera opción es JohnTheRipper, pero antes procedo a ponerla en un formato que el John pueda aceptar
 ```markdown
@@ -99,7 +101,7 @@ ssh -i id_rsa joanna@10.10.10.171
 Si leemos el user.txt tendremos la flag del user.
 ![imagen](https://user-images.githubusercontent.com/84255799/119302679-1d3b3580-bc2a-11eb-9364-46da0f308771.png)
 
-###Ultimo paso
+### Ultimo paso
 
 Comprobamos que permiso tiene Joanna
 ```markdown
@@ -118,6 +120,6 @@ sudo /bin/nano /opt/priv
 Para ir directamente a root.txt, busque el archivo y luego procedi a leerlo.
 ![imagen](https://user-images.githubusercontent.com/84255799/119302975-9aff4100-bc2a-11eb-8614-35dcc25a287d.png)
 
-##Gracias por leer!
+## Gracias por leer!
 
 Espero te haya servido, proximamente publicaré más writeups.
