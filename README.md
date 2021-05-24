@@ -11,21 +11,22 @@ Del escaneo, se puede observar que la maquina tiene 2 puertos abiertos, se requi
 
 ## Enumeración de directorios
 Para este paso hice uso de DirBuster, ingrese los datos: URL: http://10.10.10.171:80/ y Wordlist: directory-list-lowercase-2.3-medium.txt.
-La herramiento encontro los siguientes directorios:
+La herramienta encontró los siguientes directorios:
 
 ![imagen](https://user-images.githubusercontent.com/84255799/119300552-8f118000-bc26-11eb-88c8-6c30854b43aa.png)
 
 Probando esos directorios, encontre que el directorio /music tiene un boton de login que me redirecciona a OpenNetAdmin ver 18.1.1. Buscando en google, encontre que esa versión posee RCE(Remote Code Execution).
 
 ## Buscando acceso
-
 Procedo a buscar exploits con el siguiente comando:
 ```markdown
 searchsploit opennetadmin
 ```
+
 ![imagen](https://user-images.githubusercontent.com/84255799/119301075-81a8c580-bc27-11eb-8e87-5796ec89ace9.png)
 
 Una vez copiado el exploit en nuestra carpeta de trabajo, debemos darle permisos para ejecución.
+
 ![imagen](https://user-images.githubusercontent.com/84255799/119301145-a2711b00-bc27-11eb-9887-94d2063c84bd.png)
 
 Ejecutandolo con:
@@ -33,11 +34,13 @@ Ejecutandolo con:
 ./ona.sh http://10.10.10.171/ona/
 ```
 Me da una shell:
+
 ![imagen](https://user-images.githubusercontent.com/84255799/119301280-d0565f80-bc27-11eb-9d99-24f7c772941f.png)
 
 ## Buscando credenciales
 
 Procedo a buscar archivos que puedan darme pistas de cómo obtener acceso a un user.
+
 ![imagen](https://user-images.githubusercontent.com/84255799/119301374-fe3ba400-bc27-11eb-9979-f1e5ee69c922.png)
 
 Leyendo ese archivo con:
@@ -73,11 +76,12 @@ ss -ltu
 ```
 ![imagen](https://user-images.githubusercontent.com/84255799/119302096-2f68a400-bc29-11eb-96c8-bff28733c843.png)
 
-Por lo que si realizamos Curl a la pagina en ese puerto
+Por lo que si realizamos Curl a la pagina en ese puerto,
 ```markdown
 curl localhost:52846/main.php
 ```
-Encontramos una llave privada
+Encontramos una llave privada:
+
 ![imagen](https://user-images.githubusercontent.com/84255799/119302205-5a52f800-bc29-11eb-9014-2adb7003b667.png)
 
 ### Crackeando password 
@@ -104,7 +108,7 @@ Si leemos el user.txt tendremos la flag del user.
 
 ### Ultimo paso
 
-Comprobamos que permiso tiene Joanna
+Comprobamos que permiso tiene Joanna,
 ```markdown
 sudo -l
 ```
