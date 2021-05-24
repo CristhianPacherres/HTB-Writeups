@@ -1,5 +1,14 @@
-# HTB-Writeups
-## Welcome to GitHub Pages
+# HTB - OpenAdmin
+Este es mi primer writeup asi como OpenAdmin(10.10.10.171) fue una de las primeras maquinas que resolvi. Espero que sea de ayuda y H4ppy H4ck1ng!
+## Escaneando puertos
+Utilizando el comando:
+```markdown
+nmap -sS --open -p- -sV -T 4 10.10.10.171 
+```
+![imagen](https://user-images.githubusercontent.com/84255799/119300072-c16ead80-bc25-11eb-9a3c-61bf6bc1ea3f.png)
+
+Del escaneo, se puede observar que la maquina tiene 2 puertos abiertos, se requieren usuarios para el login de SSh por lo que se procede a enumerar el puerto 80.
+
 
 You can use the [editor on GitHub](https://github.com/CristhianPacherres/HTB-Writeups/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
