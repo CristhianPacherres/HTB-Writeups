@@ -9,7 +9,7 @@ nmap -sS --open -p- -sV -T 4 10.10.10.171
 
 Del escaneo, se puede observar que la maquina tiene 2 puertos abiertos, se requieren usuarios para el login de SSh por lo que se procede a enumerar el puerto 80.
 
-##Enumeración de directorios
+## Enumeración de directorios
 Para este paso hice uso de DirBuster, ingrese los datos: URL: http://10.10.10.171:80/ y Wordlist: directory-list-lowercase-2.3-medium.txt.
 La herramiento encontro los siguientes directorios:
 ![imagen](https://user-images.githubusercontent.com/84255799/119300552-8f118000-bc26-11eb-88c8-6c30854b43aa.png)
